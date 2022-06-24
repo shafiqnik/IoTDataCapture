@@ -31,11 +31,11 @@ mydb = Influxdb()
 
 #Variable for MQTT connection and storage
 
-mqttBroker ="104.36.12.156"
+mqttBroker ="104.36.12.158"
 portNumber = 18160
 
 #mqttBroker="10.220.252.10"
-topic = 'net1'
+topic = 'net'
 client = mqtt.Client("laptop")
 
 def convertList_to_dic(lst):
@@ -58,8 +58,12 @@ def on_message(client, userdata, message):
 
     mymessage = ble_payload.split(',')
     if len(mymessage) > 7:
-       # dbinsert(mymessage[2],mymessage[1],mymessage[3:10], mymessage[-1])
-        #print(mymessage)
+        #dbinsert(mymessage[2],mymessage[1],mymessage[3:10], mymessage[-1])
+        #dbinsert(mymessage)
+        if "Gateway" in mymessage:
+            print('gateway is there')
+        else:
+            print('gateway is not there')
 
 
         tagInfo = y[1]['mac']+'-'+y[1]['timestamp']
